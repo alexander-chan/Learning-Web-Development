@@ -1,0 +1,165 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+ "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+<title>Ajax Lab</title>
+
+<style type="text/css">
+
+#yes	{
+width:100px;
+height: 20px;
+border: solid black 1px;
+background-color: deepskyblue;
+margin: 20px;
+		}
+
+#no	{
+width:100px;
+height: 20px;
+border: solid black 1px;
+background-color:red; 
+margin: 20px;
+}
+
+#container {
+margin-top: 50px;
+width:400px;
+height: 300px;
+margin: 20px;
+}
+
+</style>
+
+<script type="text/javascript">
+		
+		function process_form()
+		{
+		
+			var yes = document.getElementById("yes_check");
+            var no = document.getElementById("no_check");
+            
+            var checkyes = false;
+            var checkno = false;
+            checkyes = yes.checked;
+            checkno = no.checked;
+            
+            var query_string;
+            
+            /*Check which button is clicked and create the subsequent query string*/
+            if (checkyes)
+                {
+                    query_string = "vote=yes";
+                }
+            else if (checkno)
+            {
+                    query_string = "vote=no";
+            }
+            else {
+                    query_string = "";
+            }
+
+            //Retrieve the vote counts from the database
+            do_ajax_stuff(query_string);
+            
+            //Update the polls every 3s in case the database changes
+            setInterval(checkUpdate, 3000);
+			
+		}
+		
+    
+    
+		function do_ajax_stuff(query_string) 
+		{
+			window.xhr = new XMLHttpRequest();
+
+            xhr.open("GET", "http://pic.ucla.edu/~alexander255110/test/vote.php?" + query_string,true); 
+            
+			xhr.onreadystatechange = function () 
+			{
+
+				if (xhr.readyState == 4 && xhr.status == 200) 
+				{
+					var result = xhr.responseText;
+                    display_result(result); 
+
+				}
+			}	
+  
+			xhr.send(null);
+		}
+    
+    /*This function updates the poll divs every 3s should another user is changing the votes 
+    so that the current user can see the changes in real time*/
+    function checkUpdate()
+    {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("GET", "http://pic.ucla.edu/~leprekhanh/vote.php", true); 
+            
+			xhr.onreadystatechange = function () 
+			{
+				if (xhr.readyState == 4 && xhr.status == 200) 
+				{
+					var result2 = xhr.responseText;
+                    display_result(result2);   
+				}
+			}	
+  
+			xhr.send(null);
+    }
+    
+
+
+   /* Adjust the yes and no divs length depending on the amount of votes. Display the number of votes for each category. */
+    function display_result(result){
+        var amount = result.split(',');
+        var ycount = parseInt(amount[0]);
+        var ncount = parseInt(amount[1]);
+        var total = ycount + ncount;
+        ycount = amount[0] / total;
+        ncount = amount[1] / total;
+        ywidth = 200 * ycount;
+        nwidth = 200 * ncount;
+        
+        var ydiv = document.getElementById("yes");
+        ydiv.style.width = ywidth + "px";
+        ydiv.innerHTML = "Yes: " + amount[0];
+    
+        var ndiv = document.getElementById("no");
+        ndiv.style.width = nwidth + "px";
+        ndiv.innerHTML = "No: " + amount[1];
+        
+
+    }
+</script>
+
+
+</head>
+
+
+<body onload="init()">
+<h2>Vote on the question: ?</h2>
+
+        <fieldset>
+
+                <form action="" method="get">
+					<p>
+                        Yes <input type="radio" name="vote" value="yes" id="yes_check" /><br/>
+                        No  <input type="radio" name="vote"  value="no" id="no_check" /><br/>
+                        <input type="button" onclick="process_form()" value="Submit"/>
+					</p>
+                </form>
+         </fieldset>
+				
+	<h1>Results</h1>
+	<div id="container">			
+		<div id="yes" class="yes">Yes:</div>
+		<div id="no">No:</div>
+	</div>			
+</body>
+</html>
+

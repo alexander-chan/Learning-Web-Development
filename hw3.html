@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+ "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+<title>JavaScript HW3</title>
+<link href='//fonts.googleapis.com/css?family=Pragati+Narrow' rel='stylesheet'/>
+<link href="calculator.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript">
+<!-- 
+
+//This is the function I am providing for you.  It takes as argument a string or a number and displays it in the box in the window
+	var pastNum = 0;
+	var recentOperator = null;
+	var resetAtNum = false;
+
+     function display(num) {
+        var node = document.getElementById("display");  
+		node.value=num;
+     }
+
+// `Add whatever JS you want here	 
+	
+	function number(el){
+		var num = el.innerHTML;
+		var node = document.getElementById("display");
+		if(resetAtNum){
+			display(num);
+			resetAtNum = false;
+		} else {
+			display(node.value + num);
+		}
+	}
+
+	function operatorBinary(el){
+		var op = el.innerHTML;
+		var node = document.getElementById("display");
+		if(recentOperator != null){
+			evalua();
+		}
+		pastNum = node.value;
+		recentOperator = op;
+		resetAtNum = true;
+	}
+
+	function operatorUnary(el){
+		var op = el.innerHTML;
+		var node = document.getElementById("display");
+		var num = Number(node.value);
+		if(recentOperator != null){
+			evalua();
+		}
+		var res = null;
+		if(op == "sin") res = Math.sin(num);
+		else if (op == "cos") res = Math.cos(num);
+		else if (op == "tan") res = Math.tan(num);
+		else if (op == "X<sup>2</sup>") res = (num * num);
+
+		display(Math.round((res)*1000)/1000);
+	}
+
+	function minus(el){
+		if(pastNum == 0){
+			pastNum = el.innerHTML;
+			display(pastNum);
+		}else{
+			operatorBinary(el);
+		}
+	}
+
+	function evalua(){
+		var node = document.getElementById("display");
+		var num1 = Number(pastNum);
+		var num2 = Number(node.value);
+		var res = null;
+		if(recentOperator == "+") res = num1 + num2;
+		else if (recentOperator == "-") res = num1 - num2;
+		else if (recentOperator == "*") res = num1 * num2;
+		else if (recentOperator == "/") res = num1 / num2;
+		display(Math.round((res)*1000)/1000);
+
+		resetAtNum = true;
+		pastNum = 0;
+		recentOperator = null;
+	}
+//-->
+
+</script>
+</head>
+<body> 
+<p class="title">Alex's Simple 'n Sexy Calculator</p>
+
+<!--This is the text box where numbers will be displayed.  Call the display function to show a number here -->
+<form action="" method="get">
+<p>
+	<input type="text" id="display"/>
+</p>
+</form>
+
+<form action="" method="get">
+
+<!--Your calculator buttons go here. Note there is no submit buttons at all -->
+<table style="width:19%">
+  <tr>
+    <td class="button" onclick="number(this)">7</td>
+    <td class="button" onclick="number(this)">8</td> 
+    <td class="button" onclick="number(this)">9</td>
+    <td class="button" onclick="operatorBinary(this)">/</td>
+  </tr>
+  <tr>
+    <td class="button" onclick="number(this)">4</td>
+    <td class="button" onclick="number(this)">5</td> 
+    <td class="button" onclick="number(this)">6</td>
+    <td class="button" onclick="operatorBinary(this)">*</td>
+  </tr>
+  <tr>
+    <td class="button" onclick="number(this)">1</td>
+    <td class="button" onclick="number(this)">2</td> 
+    <td class="button" onclick="number(this)">3</td>
+    <td class="button" onclick="operatorBinary(this)">-</td>
+  </tr>
+  <tr>
+    <td class="button" onclick="number(this)">.</td>
+    <td class="button" onclick="number(this)">0</td> 
+    <td class="button" onclick="evalua()">=</td>
+    <td class="button" onclick="operatorBinary(this)">+</td>
+  </tr>
+  <tr>
+    <td class="button" onclick="operatorUnary(this)">sin</td>
+    <td class="button" onclick="operatorUnary(this)">cos</td> 
+    <td class="button" onclick="operatorUnary(this)">tan</td>
+    <td class="button" onclick="operatorUnary(this)">X<sup>2</sup></td>
+  </tr>
+  
+</table>
+
+</form>
+
+<!-- W3C XHTML Validation logo-->
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img
+     src="http://www.w3.org/Icons/valid-xhtml11"
+     alt="Valid XHTML 1.1" height="31" width="88" /></a>
+</p>
+</body>
+</html>

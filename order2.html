@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <title>Platinum Housing&reg;</title>
+	  <meta name = "authors" content="Alexander Chan" />
+	  <meta name = "description" content="Platinum Housing&reg; at UCLA" />
+	  <meta name = "keywords" content="Rental Units" />
+	  <meta name = "copyright" content="Copyright 2017 Alexander Chan &copy;, All Rights
+Reserved" />
+   </head>
+
+   <body>
+
+   <h2> Platinum Housing &reg; </h2>
+
+   <address>
+	500 Landfair Ave.<br/>
+	USA
+	</address>
+   <blockquote> <p>"Affordability, Quality, and Safety" </p> </blockquote>
+   
+
+   <h4> We are extremely excited to begin the first step of the move in provess to Platinum Housing. <br/>
+   Please fill out the information below to begin. </h4>
+
+   <form action = "send" method = "get">
+   <fieldset>
+      <legend>Customer Information</legend>
+      <label for="customer_name"></label>
+      <input type="text" name="customer_name" id="customer_name" size = "50" value = "First and Last Name"/>
+      <label for="customer_street"></label>
+      <input type="text" name="customer_street" id="customer_street" size = "50" value = "Street"/>
+      <label for="customer_city"></label>
+      <input type="text" name="customer_city" id="customer_city" size = "50" value = "City"/>
+      <label for="customer_state"></label>
+      <input type="text" name="customer_state" id="customer_state" size = "50" value = "State (Abbreviation)" maxlength="2" />
+      <label for="customer_zip"></label>
+      <input type="text" name="customer_zip" id="customer_zip" size = "50" value = "5 Digit Zip" maxlength="5" />
+      <label for="customer_email"></label>
+       <input type="text" name="customer_email" id="customer_email" size = "50" value = "E-mail" />
+   </fieldset>
+
+   <fieldset>
+      <legend>Personal Preferences and Payment</legend>
+      <label for="smoking">Are you a smoker?</label> <br/>
+      <input type="radio" id = "smoking" name="smoking" value="true"/>True <br/>
+      <input type="radio" id = "smoking_f" name="smoking" value="false"/>False <br/>
+      
+      <label for = "sun_orientation">Days you are available for orientation, from 5 to 6pm</label><br/>
+      <input type = "checkbox" id = "sun_orientation" name = "orientation" value="sunday"/> Sunday
+      <input type = "checkbox" id = "mon_orientation" name = "orientation" value="monday"/> Monday
+      <input type = "checkbox" id = "tues_orientation" name = "orientation" value="tuesday"/> Tuesday
+      <input type = "checkbox" id = "wed_orientation" name = "orientation" value="wednesday"/> Wednesday
+      <input type = "checkbox" id = "thurs_orientation" name = "orientation" value="thursday"/> Thursday
+      <input type = "checkbox" id = "fri_orientation" name = "orientation" value="friday"/> Friday
+      <input type = "checkbox" id = "sat_orientation" name = "orientation" value="saturday"/> Saturday
+
+      <br/><br/>
+
+      <label for="creditcard"> Credit Card Number</label><br/>
+      <input type = "password" id = "creditcard" name = "creditcard" maxlength="16" /> 
+      <br/>
+      <label for="cc_type"> Credit Card Type </label><br/>
+      <select name = "cc_type" id = "cc_type">
+      <option value="Visa" label = "Visa"> Visa </option>
+      <option value="MasterCard" label = "Master Card"> </option>
+      <option value="American Express" label = "American Express">   </option>
+      <option value="Discover" label = "Discover">  </option>
+      </select>
+      <br/>
+      </fieldset>
+
+   <fieldset>
+      <legend>Form Management</legend>
+      <label for="submit"></label>
+      <input type = "submit" value = "Send" id = "submit"/>
+      <label for="reset"></label>
+      <input type="reset" value = "Clear" id = "reset"/>
+
+   </fieldset>
+   </form>
+   
+   
+	<p>
+    <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+    </p>
+	</body>
+
+</html>

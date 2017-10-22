@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+ "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+<title>Ajax</title>
+
+<style type="text/css">
+
+#yes	{
+width:100px;
+height: 20px;
+border: solid black 1px;
+background-color:blue;
+margin: 20px;
+		}
+
+#no	{
+width:100px;
+height: 20px;
+border: solid black 1px;
+background-color:red; 
+margin: 20px;
+}
+
+#container {
+margin-top: 50px;
+width:400px;
+height: 300px;
+margin: 20px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+function init()
+{
+		 document.getElementById("yes").style.display="none";
+		 document.getElementById("no").style.display="none";
+}
+
+function process_form()
+{
+	var query_string = "";
+	
+	nodeyes_check = document.getElementById("yes_check");
+	nodeno_check = document.getElementById("no_check");
+	
+	if (nodeyes_check.checked)
+	{
+		query_string="vote=yes";
+	}
+	else
+	{
+		query_string="vote=no";
+	}
+	
+	do_ajax_stuff(query_string);
+	
+}
+
+
+		function display_result(result)
+		{
+
+		nodeyes = document.getElementById("yes");
+		nodeno = document.getElementById("no");
+
+		nodeyes.style.display="block";
+		nodeno.style.display="block";
+
+		
+			var votes_array = result.split(",");
+			var yes = votes_array[0]-0;
+			var no = votes_array[1]-0;
+			
+			var total = yes + no;
+
+			yeswidth = 200 * yes/total;
+			nowidth = 200 * no / total;
+			nodeyes.style.width=yeswidth+"px";
+			nodeno.style.width=nowidth+"px";
+			
+			nodeyes.innerHTML = "Yes: " + yes;
+			nodeno.innerHTML = "No: " + no;
+				
+		}
+		
+		function do_ajax_stuff(query_string) 
+		{
+			var xhr = new XMLHttpRequest();
+
+			xhr.onreadystatechange = function () 
+			{
+
+				if (xhr.readyState == 4 && xhr.status == 200) 
+				{
+					var result = xhr.responseText;
+					alert("result string is: " + result);
+					display_result(result);
+					
+				}
+			}	
+  
+			alert("query sting is: " + query_string);
+			xhr.open("GET", "http://pic.ucla.edu/~alexander255110/vote.php?" + query_string,true); 
+			xhr.send(null);
+		}
+
+
+</script>
+
+
+</head>
+
+
+<body onload="init()">
+<h2>Vote on the question: Is Futurama the best show on TV?</h2>
+
+        <fieldset>
+
+                <form action="#" method="get">
+					<p>
+                        Yes <input type="radio" name="vote" value="yes" id="yes_check" /><br/>
+                        No  <input type="radio" name="vote"  value="no" id="no_check" /><br/>
+                        <input type="button" value="Submit" onclick="process_form()"/>
+					</p>
+                </form>
+         </fieldset>
+				
+	<h1>Results</h1>
+	<div id="container">			
+		<div id="yes" class="yes">Yes:</div>
+		<div id="no">No:</div>
+	</div>			
+</body>
+</html>
+

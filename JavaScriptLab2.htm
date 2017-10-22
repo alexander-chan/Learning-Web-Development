@@ -1,0 +1,60 @@
+﻿<!DOCTYPE HTML>
+<!-- saved from url=(0087)http://www.math.ucla.edu/~virtanen/40a.1.17s/labs/js_dom_lab/js_dom_task1_solution.html -->
+<!--?xml version="1.0" encoding="utf-8"?--><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+ 
+<META http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"> 
+<TITLE>JavaScript Example</TITLE> 
+<STYLE type="text/css">
+
+#box {
+width: 50px;
+height: 50px;
+border: 1px solid;
+background-color: blue;
+}
+
+</STYLE>
+ 
+<SCRIPT type="text/javascript">
+<!-- 
+var counter = 0;
+
+function move_it()
+{
+	var left_offset = divObj.style.left;
+	var top_offset = divObj.style.top;
+	left_offset = parseInt(left_offset);
+	top_offset = parseInt(top_offset);
+
+	if(counter < 400) left_offset++;
+	else if(counter < 800) top_offset++;
+	else if(counter < 1200) left_offset--;
+	else if(counter < 1600) top_offset--;
+
+	divObj.style.left = left_offset + "px";
+	divObj.style.top = top_offset + "px";
+	
+	counter++;
+	if(counter < 1600) setTimeout("move_it()",10);
+}
+
+function start()
+{
+	divObj = document.getElementById("box"); 
+	divObj2 = document.getElementById("box2"); 
+
+	divObj.style.position="absolute";
+	divObj.style.left="10px";
+	divObj.style.top="10px";
+	move_it();
+}
+//-->
+</SCRIPT>
+ 
+<META name="GENERATOR" content="MSHTML 11.00.9600.18666"></HEAD> 
+<BODY onload="start();">
+<DIV id="box"></DIV>
+<button >
+</BODY></HTML>

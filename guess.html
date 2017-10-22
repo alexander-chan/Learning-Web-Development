@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+ "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+<title></title>
+<h1> What number am I thinking of? </h1>
+<p> Alexander Chan </p>
+<script type="text/javascript">
+function guessAnswer(num, sol){
+	while(num != sol){
+		if(num < sol){
+			document.write("...Sorry, you're wrong. Your guess of " + num + " is too low.<br/>");
+			num = prompt("...Sorry, you're wrong. Your guess of " + num + " is too low. Guess again.","")
+		}
+		
+		if(num > sol){
+			document.write("...Sorry, you're wrong. Your guess of " + num + " is too high.<br/>");
+			num = prompt("...Sorry, you're wrong. Your guess of " + num + " is too high. Guess again.","")
+		}
+
+		if(num == null){
+			if(confirm("Do you want to quit? Press OK to quit. Press Cancel to continue playing.","")){
+				break;
+			}
+		}
+	}
+
+
+
+	if(num == sol){
+		document.write("**Right** " + num + " is the magic number.<br/><br/>");
+	}
+	if(num != sol){
+		document.write("Sorry! The solution was " + sol + ".<br/><br/>");
+	}
+}
+
+function playGame(){
+	var sol = Math.floor(0 + Math.random() * (100 - 0 + 1));
+	var num = prompt("Enter a number","");
+	if(num == null){
+		document.write("Sorry! The solution was " + sol + ".<br/><br/>");
+	}
+	else { guessAnswer(num, sol); } 
+}
+</script>
+
+
+</head>
+<body> 
+<script type="text/javascript">
+
+
+do{
+	playGame();
+}
+while(confirm("Would you like to play again?  Press OK to play again. Press Cancel to stop.",""));
+
+
+</script>
+
+<!-- W3C XHTML Validation logo-->
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img
+     src="http://www.w3.org/Icons/valid-xhtml11"
+     alt="Valid XHTML 1.1" height="31" width="88" /></a>
+</p>
+</body>
+</html>
